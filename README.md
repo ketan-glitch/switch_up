@@ -32,7 +32,7 @@ CustomSwitch<String>(
 ),
 ```
 
-![ezgif.com-gif-maker(3).gif](README%2040142144b4af4d02bbbe207aa591335f/ezgif.com-gif-maker(3).gif)
+![ezgif.com-gif-maker(3).gif](https://github.com/ketan-glitch/switch_up/tree/master/assets/1.gif)
 
 ### Switch Up with custom Height, Color and Animation
 
@@ -51,7 +51,7 @@ CustomSwitch(
 ),
 ```
 
-![ezgif.com-gif-maker(4).gif](README%2040142144b4af4d02bbbe207aa591335f/ezgif.com-gif-maker(4).gif)
+![ezgif.com-gif-maker(4).gif](https://github.com/ketan-glitch/switch_up/tree/master/assets/2.gif)
 
 ### Switch Up with a Gradient Color
 
@@ -75,7 +75,7 @@ CustomSwitch(
 ),
 ```
 
-![ezgif.com-gif-maker(5).gif](README%2040142144b4af4d02bbbe207aa591335f/ezgif.com-gif-maker(5).gif)
+![ezgif.com-gif-maker(5).gif](https://github.com/ketan-glitch/switch_up/tree/master/assets/3.gif)
 
 ```dart
 CustomSwitch(
@@ -97,7 +97,7 @@ CustomSwitch(
 ),
 ```
 
-![ezgif.com-gif-maker(6).gif](README%2040142144b4af4d02bbbe207aa591335f/ezgif.com-gif-maker(6).gif)
+![ezgif.com-gif-maker(6).gif](https://github.com/ketan-glitch/switch_up/tree/master/assets/4.gif)
 
 Switch Up with Custom Models
 
@@ -131,7 +131,7 @@ CustomSwitch<States>(
 
 ```
 
-![ezgif.com-gif-maker(7).gif](README%2040142144b4af4d02bbbe207aa591335f/ezgif.com-gif-maker(7).gif)
+![ezgif.com-gif-maker(7).gif](https://github.com/ketan-glitch/switch_up/tree/master/assets/5.gif)
 
 With icons, text and different active background colors
 
