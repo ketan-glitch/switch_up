@@ -75,7 +75,7 @@ CustomSwitch(
 ),
 ```
 
-![ezgif.com-gif-maker(5).gif](https://github.com/ketan-glitch/switch_up/tree/master/assets/3.gif)
+![ezgif.com-gif-maker(5).gif](https://github.com/ketan-glitch/switch_up/blob/708abe4f5f903dbecf82a60346d22b6e24f5894c/assets/1.gif)
 
 ```dart
 CustomSwitch(
