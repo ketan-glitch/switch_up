@@ -13,6 +13,7 @@ class SwitchUp<T> extends StatefulWidget {
     required this.value,
     this.enabled = true,
     this.radius = 8.0,
+    this.elevation = 10,
     this.curves = Curves.linear,
     this.height = 30.0,
     this.gradient,
@@ -35,20 +36,57 @@ class SwitchUp<T> extends StatefulWidget {
           color == null || gradient == null,
           'Cannot provide both a color and a gradient\n',
         ),
+        assert(
+          items.length < 2,
+          'Please provide at least 2 items\n',
+        ),
         super(key: key);
 
+  /// List of Items<T>
   final List<T> items;
+
+  /// onChanged(T value)
+  ///
+  /// will return selected item on tap.
   final Function(T value) onChanged;
+
+  /// Decides if Switch is enabled or not
   final bool enabled;
+
+  /// Animation Curve
   final Curve curves;
+
+  /// Radius for the switch
   final double? radius;
+
+  /// Elevation for the selected switch item
+  final double elevation;
+
+  /// Height for Switch
   final double height;
+
+  /// Gradient for selected Switch Item.
   final Gradient? gradient;
+
+  /// Color for Selected Switch Item
   final Color? color;
+
+  /// backgroundColor for Switch
   final Color? backgroundColor;
+
+  /// selectedTextColor for Switch
   final Color? selectedTextColor;
+
+  /// unselectedTextColor for Switch
   final Color? unselectedTextColor;
+
+  ///
+  /// animationDuration for Switch
+  ///
+  /// default is set to `const Duration(milliseconds: 200);`
   final Duration animationDuration;
+
+  /// Type for Switch
   final T value;
 
   @override
@@ -62,6 +100,10 @@ class _SwitchUpState<T> extends State<SwitchUp<T>> {
   @override
   void initState() {
     super.initState();
+
+    ///
+    /// Setting the default value
+    ///
     Timer.run(() {
       setState(() {
         try {
@@ -99,14 +141,16 @@ class _SwitchUpState<T> extends State<SwitchUp<T>> {
                   curve: widget.curves,
                   duration: widget.animationDuration,
                   child: Material(
-                    elevation: 10,
+                    elevation: widget.elevation,
                     borderRadius: BorderRadius.circular(widget.radius ?? 8),
                     child: Container(
                       height: widget.height,
                       width: (constraints.maxWidth) / widget.items.length,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(widget.radius ?? 8),
-                        color: (widget.color == null && widget.gradient == null) ? Theme.of(context).primaryColor : widget.color,
+                        color: (widget.color == null && widget.gradient == null)
+                            ? Theme.of(context).primaryColor
+                            : widget.color,
                         gradient: widget.gradient,
                       ),
                     ),
@@ -118,6 +162,9 @@ class _SwitchUpState<T> extends State<SwitchUp<T>> {
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
+                            ///
+                            /// Setting the tapped value
+                            ///
                             if (widget.enabled) {
                               double x = -1;
                               double res = 2 / (widget.items.length - 1);
@@ -126,7 +173,8 @@ class _SwitchUpState<T> extends State<SwitchUp<T>> {
                               try {
                                 widget.onChanged((widget.items[i]));
                               } catch (e) {
-                                log('---- ${e.toString()} ----', name: "ERROR AT build()");
+                                log('---- ${e.toString()} ----',
+                                    name: "ERROR AT build()");
                               }
                               _alignment = Alignment(x, 0);
                               setState(() {});
@@ -140,8 +188,13 @@ class _SwitchUpState<T> extends State<SwitchUp<T>> {
                             child: Center(
                               child: Text(
                                 widget.items[i].toString(),
-                                style: Theme.of(context).textTheme.headline2!.copyWith(
-                                      color: _selectedItem1 == widget.items[i] ? Colors.white : null,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline2!
+                                    .copyWith(
+                                      color: _selectedItem1 == widget.items[i]
+                                          ? Colors.white
+                                          : null,
                                       fontSize: 16.0,
                                     ),
                               ),

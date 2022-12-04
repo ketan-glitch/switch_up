@@ -56,7 +56,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 backgroundColor: Colors.grey.shade200,
                 items: const <String>['Home', 'Chat', 'Settings'],
                 onChanged: (String value) {
-                  print(value);
+                  if (kDebugMode) {
+                    print(value);
+                  }
                 },
                 value: 'Settings',
               ),
