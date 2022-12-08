@@ -22,7 +22,7 @@ import 'package:switch_up/switch_up.dart';
 
 ```dart
 // Here, default theme color are used for selected item.
-CustomSwitch<String>(
+SwitchUp<String>(
   backgroundColor: Colors.grey.shade200,
   items: const <String>['Home', 'Chat', 'Settings'],
   onChanged: (String value) {
@@ -37,7 +37,7 @@ CustomSwitch<String>(
 ### Switch Up with custom Height, Color and Animation
 
 ```dart
-CustomSwitch(
+SwitchUp(
   backgroundColor: Colors.grey.shade200,
   color: Colors.amber,
   radius: 0,
@@ -56,7 +56,7 @@ CustomSwitch(
 ### Switch Up with a Gradient Color
 
 ```dart
-CustomSwitch(
+SwitchUp(
   gradient: const LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
@@ -78,7 +78,7 @@ CustomSwitch(
 ![ezgif.com-gif-maker(5).gif](https://github.com/ketan-glitch/switch_up/blob/708abe4f5f903dbecf82a60346d22b6e24f5894c/assets/3.gif)
 
 ```dart
-CustomSwitch(
+SwitchUp(
   backgroundColor: Colors.grey.shade200,
   radius: 40,
   gradient: const RadialGradient(
@@ -107,7 +107,7 @@ Switch Up with Custom Models
 //   String toString() {
 //     return name;
 //   } 
-CustomSwitch<States>(
+SwitchUp<States>(
   backgroundColor: Colors.pink.withOpacity(.1),
   radius: 10,
   height: 60,`

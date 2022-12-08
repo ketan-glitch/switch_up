@@ -37,7 +37,7 @@ class SwitchUp<T> extends StatefulWidget {
           'Cannot provide both a color and a gradient\n',
         ),
         assert(
-          items.length < 2,
+          (items.length > 1),
           'Please provide at least 2 items\n',
         ),
         super(key: key);
@@ -148,9 +148,7 @@ class _SwitchUpState<T> extends State<SwitchUp<T>> {
                       width: (constraints.maxWidth) / widget.items.length,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(widget.radius ?? 8),
-                        color: (widget.color == null && widget.gradient == null)
-                            ? Theme.of(context).primaryColor
-                            : widget.color,
+                        color: (widget.color == null && widget.gradient == null) ? Theme.of(context).primaryColor : widget.color,
                         gradient: widget.gradient,
                       ),
                     ),
@@ -173,8 +171,7 @@ class _SwitchUpState<T> extends State<SwitchUp<T>> {
                               try {
                                 widget.onChanged((widget.items[i]));
                               } catch (e) {
-                                log('---- ${e.toString()} ----',
-                                    name: "ERROR AT build()");
+                                log('---- ${e.toString()} ----', name: "ERROR AT build()");
                               }
                               _alignment = Alignment(x, 0);
                               setState(() {});
@@ -188,13 +185,8 @@ class _SwitchUpState<T> extends State<SwitchUp<T>> {
                             child: Center(
                               child: Text(
                                 widget.items[i].toString(),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline2!
-                                    .copyWith(
-                                      color: _selectedItem1 == widget.items[i]
-                                          ? Colors.white
-                                          : null,
+                                style: Theme.of(context).textTheme.headline2!.copyWith(
+                                      color: _selectedItem1 == widget.items[i] ? Colors.white : null,
                                       fontSize: 16.0,
                                     ),
                               ),

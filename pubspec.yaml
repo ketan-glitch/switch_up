@@ -1,5 +1,5 @@
 name: switch_up
-version: 0.0.2
+version: 0.0.2+1
 description: An animated toggle switch which can be fully customized with desired width, colors, text, corner radius, animation etc. It also maintains selection state.
 homepage: https://github.com/ketan-glitch/switch_up
 repository: https://github.com/ketan-glitch/switch_up
