@@ -11,6 +11,7 @@ class SwitchUp<T> extends StatefulWidget {
     required this.items,
     required this.onChanged,
     required this.value,
+    this.valueToString,
     this.enabled = true,
     this.radius = 8.0,
     this.elevation = 10,
@@ -49,6 +50,11 @@ class SwitchUp<T> extends StatefulWidget {
   ///
   /// will return selected item on tap.
   final Function(T value) onChanged;
+
+  /// valueToString(T value)
+  ///
+  /// displays [T] value as a string. Calls `value.toString()` by default.
+  final Function(T value)? valueToString;
 
   /// Decides if Switch is enabled or not
   final bool enabled;
@@ -187,10 +193,10 @@ class _SwitchUpState<T> extends State<SwitchUp<T>> {
                             ),
                             child: Center(
                               child: Text(
-                                widget.items[i].toString(),
+                                _valueToString(widget.items[i]),
                                 style: Theme.of(context)
                                     .textTheme
-                                    .headline2!
+                                    .displayMedium!
                                     .copyWith(
                                       color: _selectedItem1 == widget.items[i]
                                           ? Colors.white
@@ -210,5 +216,11 @@ class _SwitchUpState<T> extends State<SwitchUp<T>> {
         );
       },
     );
+  }
+
+  String _valueToString(T value) {
+    return widget.valueToString != null
+        ? widget.valueToString!(value)
+        : value.toString();
   }
 }
