@@ -33,6 +33,7 @@ class SwitchUp<T> extends StatefulWidget {
     this.selectedTextColor = Colors.white,
     this.unselectedTextColor,
     this.fontSize = 16.0,
+    this.fontWeight = FontWeight.normal,
     this.animationDuration = const Duration(milliseconds: 200),
   })  : assert(
           color == null || gradient == null,
@@ -89,6 +90,9 @@ class SwitchUp<T> extends StatefulWidget {
 
   /// font size, defaulted to 16.0
   final double fontSize;
+
+  /// font weight, defaulted to [FontWeight.normal]
+  final FontWeight fontWeight;
 
   ///
   /// animationDuration for Switch
@@ -206,6 +210,7 @@ class _SwitchUpState<T> extends State<SwitchUp<T>> {
                                           ? widget.selectedTextColor
                                           : widget.unselectedTextColor,
                                       fontSize: widget.fontSize,
+                                      fontWeight: widget.fontWeight,
                                     ),
                               ),
                             ),
