@@ -11,6 +11,7 @@ class SwitchUp<T> extends StatefulWidget {
     required this.items,
     required this.onChanged,
     required this.value,
+    this.valueToString,
     this.enabled = true,
     this.radius = 8.0,
     this.elevation = 10,
@@ -29,8 +30,10 @@ class SwitchUp<T> extends StatefulWidget {
 
     this.color,
     this.backgroundColor,
-    this.selectedTextColor,
+    this.selectedTextColor = Colors.white,
     this.unselectedTextColor,
+    this.fontSize = 16.0,
+    this.fontWeight = FontWeight.normal,
     this.animationDuration = const Duration(milliseconds: 200),
   })  : assert(
           color == null || gradient == null,
@@ -49,6 +52,11 @@ class SwitchUp<T> extends StatefulWidget {
   ///
   /// will return selected item on tap.
   final Function(T value) onChanged;
+
+  /// valueToString(T value)
+  ///
+  /// displays [T] value as a string. Calls `value.toString()` by default.
+  final Function(T value)? valueToString;
 
   /// Decides if Switch is enabled or not
   final bool enabled;
@@ -75,10 +83,16 @@ class SwitchUp<T> extends StatefulWidget {
   final Color? backgroundColor;
 
   /// selectedTextColor for Switch
-  final Color? selectedTextColor;
+  final Color selectedTextColor;
 
   /// unselectedTextColor for Switch
   final Color? unselectedTextColor;
+
+  /// font size, defaulted to 16.0
+  final double fontSize;
+
+  /// font weight, defaulted to [FontWeight.normal]
+  final FontWeight fontWeight;
 
   ///
   /// animationDuration for Switch
@@ -148,7 +162,9 @@ class _SwitchUpState<T> extends State<SwitchUp<T>> {
                       width: (constraints.maxWidth) / widget.items.length,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(widget.radius ?? 8),
-                        color: (widget.color == null && widget.gradient == null) ? Theme.of(context).primaryColor : widget.color,
+                        color: (widget.color == null && widget.gradient == null)
+                            ? Theme.of(context).primaryColor
+                            : widget.color,
                         gradient: widget.gradient,
                       ),
                     ),
@@ -171,7 +187,8 @@ class _SwitchUpState<T> extends State<SwitchUp<T>> {
                               try {
                                 widget.onChanged((widget.items[i]));
                               } catch (e) {
-                                log('---- ${e.toString()} ----', name: "ERROR AT build()");
+                                log('---- ${e.toString()} ----',
+                                    name: "ERROR AT build()");
                               }
                               _alignment = Alignment(x, 0);
                               setState(() {});
@@ -184,10 +201,16 @@ class _SwitchUpState<T> extends State<SwitchUp<T>> {
                             ),
                             child: Center(
                               child: Text(
-                                widget.items[i].toString(),
-                                style: Theme.of(context).textTheme.headline2!.copyWith(
-                                      color: _selectedItem1 == widget.items[i] ? Colors.white : null,
-                                      fontSize: 16.0,
+                                _valueToString(widget.items[i]),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displayMedium!
+                                    .copyWith(
+                                      color: _selectedItem1 == widget.items[i]
+                                          ? widget.selectedTextColor
+                                          : widget.unselectedTextColor,
+                                      fontSize: widget.fontSize,
+                                      fontWeight: widget.fontWeight,
                                     ),
                               ),
                             ),
@@ -202,5 +225,11 @@ class _SwitchUpState<T> extends State<SwitchUp<T>> {
         );
       },
     );
+  }
+
+  String _valueToString(T value) {
+    return widget.valueToString != null
+        ? widget.valueToString!(value)
+        : value.toString();
   }
 }
